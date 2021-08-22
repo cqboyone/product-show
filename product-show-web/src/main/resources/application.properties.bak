@@ -1,0 +1,26 @@
+server.port=8022
+spring.application.name=ps
+server.servlet.context-path=/ps
+spring.profiles.active=dev
+# 文件上传大小限制为1000m
+spring.servlet.multipart.max-file-size=1048576000
+#########################文件配置#########################
+# 静态资源服务路径
+file.static-root=
+# ffmpeg bin 目录位置
+file.ffmpeg-bin-dir=D:/Software/ffmpeg/ffmpeg-4.4-full_build/bin
+# aria2c.exe 文件位置
+file.aria2c-file=D:/Java/Code/yunshu-nas/data/aria2c/aria2-1.35.0-win-64bit-build1/aria2c.exe
+# 转码目录位置
+file.out-dir=../../data/tmp-video
+# 上传文件目录
+file.file-space=../../data/upload-file
+# 缓存文件目录。这里要设置绝对路径。
+spring.servlet.multipart.location=/data/upload-file/temp
+#########################数据库配置#########################
+# DataSource Config
+spring.datasource.platform=h2
+spring.datasource.driver-class-name=
+
+
+

@@ -1,0 +1,88 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+
+    <!-- assembly id -->
+    <id>build</id>
+    <!--打包后文件的格式，目前支持zip、tar、tar.gz (or tgz)、tar.bz2 (or tbz2)、tar.snappy、tar.xz (or txz)、jar、dir、war，支持指定多种格式-->
+    <formats>
+        <format>zip</format>
+    </formats>
+    <!--在最终存档中包含基本目录-->
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <!--置生成的程序集档案的基本目录。-->
+    <baseDirectory>${project.artifactId}</baseDirectory>
+
+    <fileSets>
+        <fileSet>
+            <directory>../</directory>
+            <outputDirectory>../</outputDirectory>
+            <includes>
+                <include>*.txt</include>
+                <include>*.md</include>
+            </includes>
+        </fileSet>
+        <!-- 第三方tool工具 -->
+        <fileSet>
+            <!--路径-->
+            <directory>../tool</directory>
+            <!--文件夹名称-->
+            <outputDirectory>../tool</outputDirectory>
+            <!-- linux文件权限     -->
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <!--最终生成bin文件夹，用于存放启动脚本-->
+        <fileSet>
+            <!--路径-->
+            <directory>${basedir}/src/main/bin</directory>
+            <!--文件夹名称-->
+            <outputDirectory>bin</outputDirectory>
+            <!-- linux文件权限     -->
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <!--最终生成conf文件夹，用于存放配置文件等-->
+        <fileSet>
+            <directory>${basedir}/src/main/resources</directory>
+            <includes>
+                <!--这里更具自己的项目设置，支持通配符-->
+                <include>*.properties</include>
+                <include>*.conf</include>
+                <include>*.yml</include>
+                <include>logback.xml</include>
+                <include>banner.txt</include>
+            </includes>
+            <excludes>
+                <exclude>application-dev.yml</exclude>
+                <exclude>application-dev.properties</exclude>
+            </excludes>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
+        <!--最终生成lib文件夹，用于存放项目所需的Jar包-->
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>lib</outputDirectory>
+            <includes>
+                <include>${project.artifactId}.jar</include>
+            </includes>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <!-- 数据库脚本 -->
+        <fileSet>
+            <directory>src/main/resources/db</directory>
+            <outputDirectory>conf/db/</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+            <scope>runtime</scope>
+            <!-- 打包时跳过测试与-DskipTests效果类似-->
+            <excludes>
+                <exclude>junit:junit</exclude>
+                <exclude>${groupId}:${artifactId}</exclude>
+                <exclude>org.springframework.boot:spring-boot-devtools</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+</assembly>
