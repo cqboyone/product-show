@@ -1,15 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="example-title"> vue-video-player 播放 HLS 流 </div>
+  <HlsLive></HlsLive>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HlsLive from './components/HlsLive.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HlsLive
   }
 }
 </script>
