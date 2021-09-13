@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+### 项目 ###
+/data/tmp-video/
+/data/upload-file/
