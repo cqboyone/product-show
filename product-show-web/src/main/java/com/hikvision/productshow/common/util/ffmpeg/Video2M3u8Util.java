@@ -164,25 +164,14 @@ public class Video2M3u8Util {
         StringBuilder stringBuilder = new StringBuilder();
         process(command, stringBuilder::append);
         String s = stringBuilder.toString();
+        //视频是HLS规范
         boolean video = s.contains(VIDEO_H_264);
+        //音频是HLS规范
         boolean audio = s.contains(AUDIO_AAC);
         if (logger.isDebugEnabled()) {
             logger.debug("2/4. end checkComplianceWithSpecificationsForHls {}", wantCheckVideoFile);
         }
-        //音视频都是HLS规范
-        if (video && audio) {
-            return new Tuple2<>(true, true);
-        }
-        //视频不符合HLS规范，音频符合
-        else if (!video && audio) {
-            return new Tuple2<>(false, true);
-        }
-        //音频不符合HLS规范，视频符合
-        else if (video) {
-            return new Tuple2<>(true, false);
-        } else {
-            return new Tuple2<>(false, false);
-        }
+        return new Tuple2<>(video, audio);
     }
 
     /**
