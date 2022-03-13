@@ -16,6 +16,11 @@
     ```shell
     ./ffmpeg -i  ../trailer.mp4   -hls_time 10 -hls_list_size 0  -hls_segment_filename ../hls/lucene_%05d.ts ../hls/lucene.m3u8
     ```
+## 打包
+maven install即可，打包效果图如
+
+ <img src="./pic/catalog.png" alt="catalog" style="zoom:33%;" />
+
 ## 部署
 1. 我把ffmpeg集成到工程里面了，所以无需单独下载
 
