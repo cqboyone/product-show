@@ -2,7 +2,7 @@ spring:
   servlet:
     multipart:
   datasource: # 数据源的相关配置
-    url: jdbc:mysql://10.196.42.105:3306/product_show_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/product_show_db?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
     username: root
     password: root
   redis:
@@ -25,7 +25,7 @@ file:
   ffmpeg-bin-dir: ../tool/ffmpeg/ffmpeg-4.4-full_build/bin
   # 转码目录位置
   out-dir: ../data/tmp-video
-  # 上传文件缓存目录
+  # 上传文件缓存目录，文件存储已经迁移到minio-space
   file-space: ../data/upload-file
   # MinIO存储位置
   minio-space: D:/SoftwareData/Docker/MinIO/data
